@@ -1,0 +1,26 @@
+{
+  "name": "gbox4",
+  "displayName": "gbox4",
+  "description": "gbox4 game engine script",
+  "version": "0.0.1",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "gbox4",
+      "aliases": ["gbox4", "gbox4"],
+      "extensions": [".gb"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "gbox4",
+      "scopeName": "source.gbox4",
+      "path": "./syntaxes/gbox4.tmLanguage.json"
+    }]
+  }
+}
