@@ -1,32 +1,103 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "gbox4",
-	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		}
-	],
-	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.gbox4",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.gbox4",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.gbox4",
-					"match": "\\\\."
-				}
-			]
-		}
-	},
-	"scopeName": "source.gbox4"
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "gbox4",
+    "patterns": [
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#parentheses"
+        }
+    ],
+    "repository": {
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.gbox4",
+                    "match": "\\b(nil|NULL|true|false|return|new|else|goto|while|for|break|continue|in|if|switch|case|default|class|style|catch|notes|net|svr|...|cfg|static|public|private|protected|function|struct|enum|__LINE__|base)\\b"
+                },
+                {
+                    "name": "keyword.class.gbox4",
+                    "match": "\\b(class|GObj|GObjSandBox|GObjVDisk|GSocket|GSocketC|GSocketS|GSocketSBase|GSocketUdp|GNetFileObj|GMIDFileObj|GObjShow|GObj2DWnd|GBoxShowApp|GResManager|GObjText|GObjShape|GObjView|GObjEdit|GObjTxt|GObjSyntaxEdit|GObjSheet|GObjSheetItem|GObjLook|GObjCamera|GObj3DShow|GObj3DWorld|GObj3DLight|GObj3DShadowSSM|GObj3DWater|GObj3DShape|GObj3DLine|GObj3DAni|GObj3DSkAniEdit|GMcWorldObj|GObjMeshLod|GObj3DPixelMc|GSandAppWnd|GObj3DSandBox|GWebFile)\\b"
+                },
+                {
+                    "name": "keyword.function.gbox4",
+                    "match": "\\b(WaitMs|Wait|BusyWait|Abort|EndWait|StartTask|RegInterface|FindInterface|DelInterface|GetFunErrStr|Err|GetCurTaskPtr|IsTaskPtr|HoldTask|ResumeTask|RemoveHoldTask|CallFunEx|abs|sqrt|sin|cos|tan|acos|asin|atan2|atan2ang|ang2rad|rad2ang|fmod|clamp|min|max|mix|sz|gmtsec_str|getsizestr|makevid|FormatInt16Fix|RGBA|GetVarInfo|rand|randf)\\b"
+                }
+            ]
+        },
+        "strings": {
+            "name": "string.quoted.double.gbox4",
+            "begin": "\"",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.gbox4"
+                }
+            },
+            "end": "\"|(?<!\\\\)(\\\\\\\\)*$",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.gbox4"
+                },
+                "1": {
+                    "name": "invalid.illegal.unclosed-string.gbox4"
+                }
+            },
+            "patterns": [
+                {
+                    "name": "constant.character.escape.gbox4",
+                    "match": "\\\\(n|r|t|\\\"|\\\\|u[0-9a-fA-F]{4})"
+                }
+            ]
+        },
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.double-slash.gbox4",
+                    "begin": "//",
+                    "end": "$"
+                },
+                {
+                    "name": "comment.block.gbox4",
+                    "begin": "/\\*",
+                    "end": "\\*/"
+                }
+            ]
+        },
+        "parentheses": {
+            "patterns": [
+                {
+                    "name": "punctuation.parenthesis.open.gbox4",
+                    "match": "\\("
+                },
+                {
+                    "name": "punctuation.parenthesis.close.gbox4",
+                    "match": "\\)"
+                },
+                {
+                    "name": "punctuation.bracket.open.gbox4",
+                    "match": "\\["
+                },
+                {
+                    "name": "punctuation.bracket.close.gbox4",
+                    "match": "\\]"
+                },
+                {
+                    "name": "punctuation.brace.open.gbox4",
+                    "match": "\\{"
+                },
+                {
+                    "name": "punctuation.brace.close.gbox4",
+                    "match": "\\}"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.gbox4"
 }
