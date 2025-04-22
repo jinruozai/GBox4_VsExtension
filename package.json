@@ -1,8 +1,8 @@
 {
   "name": "gbox4",
-  "displayName": "gbox4",
-  "description": "gbox4 game engine script",
-  "version": "0.0.1",
+  "displayName": "GBox4 Language Support",
+  "description": "GBox4 game engine script language support with syntax highlighting and code intelligence",
+  "version": "0.0.5",
   "icon": "icon.png",
   "engines": {
     "vscode": "^1.85.0"
@@ -11,21 +11,90 @@
     "Programming Languages"
   ],
   "contributes": {
-    "languages": [{
-      "id": "gbox4",
-      "aliases": ["gbox4", "gbox4"],
-      "extensions": [".gb"],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "gbox4",
-      "scopeName": "source.gbox4",
-      "path": "./syntaxes/gbox4.tmLanguage.json"
-    }]
+    "languages": [
+      {
+        "id": "gbox4",
+        "aliases": [
+          "GBox4",
+          "gbox4"
+        ],
+        "extensions": [
+          ".gb"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "gbox4",
+        "scopeName": "source.gbox4",
+        "path": "./syntaxes/gbox4.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "gbox4.run",
+        "title": "Run GBox4 File",
+        "icon": {
+          "light": "./resources/light/run.svg",
+          "dark": "./resources/dark/run.svg"
+        }
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "when": "resourceLangId == gbox4",
+          "command": "gbox4.run",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "GBox4",
+      "properties": {
+        "gbox4.enginePath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the GBox4 engine executable"
+        },
+        "gbox4.additionalArgs": {
+          "type": "string",
+          "default": "",
+          "description": "Additional arguments to pass to the GBox4 engine"
+        },
+        "gbox4.autocomplete": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable auto-completion for GBox4 language"
+        }
+      }
+    }
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jinruozai/GBox4_VsExtension.git"
-  },  
-  "publisher": "LazyGooooo"
+    "url": "git+https://github.com/jinruozai/GBox4_VsExtension.git"
+  },
+  "publisher": "LazyGooooo",
+  "keywords": [
+    "gbox",
+    "gbox4",
+    "game",
+    "engine",
+    "scripting",
+    "language"
+  ],
+  "author": "LazyGooooo",
+  "license": "MIT",
+  "main": "./extension.js",
+  "activationEvents": [
+    "onLanguage:gbox4"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/jinruozai/GBox4_VsExtension/issues"
+  },
+  "homepage": "https://github.com/jinruozai/GBox4_VsExtension#readme"
 }

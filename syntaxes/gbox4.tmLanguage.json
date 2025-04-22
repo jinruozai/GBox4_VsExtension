@@ -3,6 +3,9 @@
     "name": "gbox4",
     "patterns": [
         {
+            "include": "#special_identifiers"
+        },
+        {
             "include": "#keywords"
         },
         {
@@ -10,6 +13,15 @@
         },
         {
             "include": "#comments"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#identifiers"
+        },
+        {
+            "include": "#operators"
         },
         {
             "include": "#parentheses"
@@ -20,15 +32,27 @@
             "patterns": [
                 {
                     "name": "keyword.control.gbox4",
-                    "match": "\\b(nil|NULL|true|false|return|new|else|goto|while|for|break|continue|in|if|switch|case|default|class|style|catch|notes|net|svr|...|cfg|static|public|private|protected|function|struct|enum|__LINE__|base)\\b"
+                    "match": "\\b(nil|NULL|true|false|return|new|else|goto|while|for|break|continue|in|if|switch|case|default|class|style|catch|notes|net|svr|...|cfg|static|public|private|protected|function|struct|enum|__LINE__|base|this|pid|g_pDeskTop|include|includedir|define|ifdef|endif)\\b"
+                },
+                {
+                    "name": "keyword.operator.gbox4",
+                    "match": "\\b(void|int|float|string|var|obj|vec2|vec3|vec4|mat3|mat4|int64|bool|bin|script|ptrex)\\b"
                 },
                 {
                     "name": "keyword.class.gbox4",
-                    "match": "\\b(class|GObj|GObjSandBox|GObjVDisk|GSocket|GSocketC|GSocketS|GSocketSBase|GSocketUdp|GNetFileObj|GMIDFileObj|GObjShow|GObj2DWnd|GBoxShowApp|GResManager|GObjText|GObjShape|GObjView|GObjEdit|GObjTxt|GObjSyntaxEdit|GObjSheet|GObjSheetItem|GObjLook|GObjCamera|GObj3DShow|GObj3DWorld|GObj3DLight|GObj3DShadowSSM|GObj3DWater|GObj3DShape|GObj3DLine|GObj3DAni|GObj3DSkAniEdit|GMcWorldObj|GObjMeshLod|GObj3DPixelMc|GSandAppWnd|GObj3DSandBox|GWebFile)\\b"
+                    "match": "\\b(GObj|GObjSandBox|GObjVDisk|GObjZipFile|GObjLZ4File|GSocket|GSocketC|GSocketS|GSocketSBase|GSocketUdp|GVNetObj|GNetFileObj|GMIDFileObj|GObjShow|GObj2DWnd|GBoxShowApp|GSandApp2DWnd|GObj2DSandBox|GResManager|GObjText|GObjShape|GObjView|GObjEdit|GObjDoc|GObjAni|GObjUndo|GObjTxt|GObjSyntaxEdit|GObjSheet|GObjSheetItem|GObjLook|GObjSndStream|GWaveFFTShow|GObjSndView|GObjCamera|GObj3DShow|GObj3DWorld|GObj3DLight|GObj3DSkyBox|GObj3DShadowSSM|GObj3DWater|GObj3DGuid|GObj3DCamera|GObj3DBlkMaker|GObj3DAni|GObj3DCharacter|GObj3DAniMove|GObj3DHit|GObj3DShape|GObj3DLine|GMcWorldObj|GObjMeshLod|GObj3DPixelMc|GMcTreeMaker|GSandAppWnd|GObj3DSandBox|GObj3DDepMap|GObj3DParticle|GWebFile|GSandBoxWinApp|GWebLink)\\b"
                 },
                 {
                     "name": "keyword.function.gbox4",
-                    "match": "\\b(WaitMs|Wait|BusyWait|Abort|EndWait|StartTask|RegInterface|FindInterface|DelInterface|GetFunErrStr|Err|GetCurTaskPtr|IsTaskPtr|HoldTask|ResumeTask|RemoveHoldTask|CallFunEx|abs|sqrt|sin|cos|tan|acos|asin|atan2|atan2ang|ang2rad|rad2ang|fmod|clamp|min|max|mix|sz|gmtsec_str|getsizestr|makevid|FormatInt16Fix|RGBA|GetVarInfo|rand|randf)\\b"
+                    "match": "\\b(WaitMs|Wait|BusyWait|Abort|EndWait|StartTask|RegInterface|FindInterface|DelInterface|GetFunErrStr|Err|GetCurTaskPtr|IsTaskPtr|HoldTask|ResumeTask|RemoveHoldTask|CallFunEx|abs|sqrt|sin|cos|tan|acos|asin|atan2|atan2ang|ang2rad|rad2ang|fmod|clamp|min|max|mix|sz|gmtsec_str|getsizestr|makevid|FormatInt16Fix|RGBA|GetVarInfo|rand|randf|SetTimer|KillTimer|IsTimer|DelThis|SafeDelObj|NewObj|SetPos|SetSize|SetPosSize|SetRect|SetColor|SetText|SetAlign|SetShape|SetImg|SetShow|SetAnchor_Fill|AddSizeNoti|Load|isobj|OnCreate|OnTouch|OnKeyDown|OnKeyUp)\\b"
+                },
+                {
+                    "name": "keyword.namespace.gbox4",
+                    "match": "\\b(file|sys|csvr|netapi|syshelp|font|showcmd|touch|keyboard|res|ease|showpath|snd|web|locapi|rsa|con2d|ani2d|img|sndbuf|atom|draw|material|particle)\\b"
+                },
+                {
+                    "name": "constant.language.gbox4",
+                    "match": "\\b(TOUCHFLAG_ONE|TOUCHFLAG_MUTI|TOUCHFLAG_POP|TOUCHFLAG_IN|TOUCHFLAG_MOUSEWHEEL|TOUCHFLAG_BREAK|TOUCHFLAG_ONLYTOP|TOUCHFLAG_DROPFILES|TOUCHFLAG_HOOK|TOUCHFLAG_NORMAL|TOUCHFLAG_VIEW|TOUCHFLAG_ALL|TOUCHFLAG_KEYFOCUS|TOUCHFLAG_NEEDLOC|TOUCH_DOWN|TOUCH_MOVE|TOUCH_UP|TOUCH_DBCLK|TOUCH_IN|TOUCH_OUT|TOUCH_CANCEL|GVK_BACK|GVK_TAB|GVK_CLEAR|GVK_RETURN|GVK_SHIFT|GVK_CTRL|GVK_ALT|GVK_PAUSE|GVK_CAPITAL|GVK_ESCAPE|GVK_SPACE|GVK_PAGEUP|GVK_PAGEDN|GVK_END|GVK_HOME|GVK_LEFT|GVK_UP|GVK_RIGHT|GVK_DOWN|GVK_SELECT|GVK_PRINT|GVK_EXECUTE|GVK_SNAPSHOT|GVK_INSERT|GVK_DELETE|GVK_HELP|GVK_A|GVK_B|GVK_C|GVK_D|GVK_E|GVK_F|GVK_G|GVK_H|GVK_I|GVK_J|GVK_K|GVK_L|GVK_M|GVK_N|GVK_O|GVK_P|GVK_Q|GVK_R|GVK_S|GVK_T|GVK_U|GVK_V|GVK_W|GVK_X|GVK_Y|GVK_Z|GVK_0|GVK_1|GVK_2|GVK_3|GVK_4|GVK_5|GVK_6|GVK_7|GVK_8|GVK_9|GVK_SUB|GVK_EQ|GVK_LWIN|GVK_RWIN|GVK_APPS|GVK_NUMPAD0|GVK_NUMPAD1|GVK_NUMPAD2|GVK_NUMPAD3|GVK_NUMPAD4|GVK_NUMPAD5|GVK_NUMPAD6|GVK_NUMPAD7|GVK_NUMPAD8|GVK_NUMPAD9|GVK_F1|GVK_F2|GVK_F3|GVK_F4|GVK_F5|GVK_F6|GVK_F7|GVK_F8|GVK_F9|GVK_F10|GVK_F11|GVK_F12|GVK_F13|GVK_F14|GVK_F15|GVK_F16|GVK_F17|GVK_F18|GVK_F19|GVK_F20|GVK_NUMLOCK|GVK_SCROLL|GVKBIT_SHIFT|GVKBIT_CTRL|GVKBIT_ALT)\\b"
                 }
             ]
         },
@@ -67,6 +91,62 @@
                     "name": "comment.block.gbox4",
                     "begin": "/\\*",
                     "end": "\\*/"
+                }
+            ]
+        },
+        "numbers": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.float.gbox4",
+                    "match": "\\b([0-9]+\\.[0-9]*|[0-9]*\\.[0-9]+)\\b"
+                },
+                {
+                    "name": "constant.numeric.integer.gbox4",
+                    "match": "\\b[0-9]+\\b"
+                },
+                {
+                    "name": "constant.numeric.hex.gbox4",
+                    "match": "\\b0x[0-9a-fA-F]+\\b"
+                },
+                {
+                    "name": "constant.numeric.long.gbox4",
+                    "match": "\\b[0-9]+L\\b"
+                }
+            ]
+        },
+        "identifiers": {
+            "patterns": [
+                {
+                    "name": "variable.member.gbox4",
+                    "match": "\\b(m_[a-zA-Z][a-zA-Z0-9_]*|s_[a-zA-Z][a-zA-Z0-9_]*)\\b"
+                },
+                {
+                    "name": "support.class.gbox4",
+                    "match": "(::|\\.|\\b)(res|file|sys|csvr|netapi|syshelp|font|showcmd|touch|keyboard|snd|web|locapi)(::|\\.|\\b)"
+                },
+                {
+                    "name": "support.variable.gbox4",
+                    "match": "\\b(_err|_errinfo|_erragv)\\b"
+                }
+            ]
+        },
+        "special_identifiers": {
+            "patterns": [
+                {
+                    "name": "entity.name.tag.gbox4",
+                    "match": "\\b(id|fn|res|rgb)#[A-Za-z0-9_]+\\b"
+                },
+                {
+                    "name": "support.function.gbox4",
+                    "match": "\\b(strid)\\b"
+                }
+            ]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.gbox4",
+                    "match": "(?<![\\w$])(\\+|\\-|\\*|\\/|\\%|\\&|\\||\\^|\\!|\\~|\\<|\\>|\\?|\\:|\\=)(?![\\w$])"
                 }
             ]
         },
