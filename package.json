@@ -2,7 +2,7 @@
   "name": "gbox4",
   "displayName": "GBox4 Language Support",
   "description": "GBox4 game engine script language support with syntax highlighting and code intelligence",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "icon": "icon.png",
   "engines": {
     "vscode": "^1.85.0"

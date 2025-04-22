@@ -15,6 +15,7 @@ Welcome to the GBox4 extension for Visual Studio Code! This extension provides c
 - **Run Button**: Easy-to-use run button in the editor title bar for .gb files
 - **Integrated Terminal**: Run scripts directly within VS Code's integrated terminal
 - **Configurable Engine Path**: Set your GBox4 engine path in the extension settings
+- **macOS App Support**: Automatically handles macOS .app bundles and locates the executable inside
 - **Additional Arguments**: Customize your run configuration with additional command-line arguments
 
 ### Code Intelligence
@@ -63,20 +64,25 @@ GObjShape $ {
 2. Open your VS Code settings (File > Preferences > Settings)
 3. Search for "GBox4"
 4. Set the path to your GBox4 engine executable in "GBox4: Engine Path"
+   - On macOS, you can directly set a path to the .app bundle (e.g., `/Applications/gbox4mac.app`)
+   - The extension will automatically locate the executable inside the app bundle
 5. Optionally, configure additional command-line arguments in "GBox4: Additional Args"
 
 ## Using the Run Button
 
 When viewing a .gb file, you'll see a "Run" button in the editor's title bar (top-right corner). Clicking this button will:
-1. Save your file if needed
-2. Execute it using the configured GBox4 engine
-3. Show the output in VS Code's integrated terminal
+1. Automatically use the currently active .gb file in the editor
+2. Save your file if needed
+3. Execute it using the configured GBox4 engine
+4. Show the output in VS Code's integrated terminal
+
+The extension always runs the file that is currently open and active in the editor. The complete file path will be passed to the GBox4 engine as a command-line parameter.
 
 ## Extension Settings
 
 This extension contributes the following settings:
 
-- `gbox4.enginePath`: Path to the GBox4 engine executable
+- `gbox4.enginePath`: Path to the GBox4 engine executable or application (.app on macOS)
 - `gbox4.additionalArgs`: Additional arguments to pass to the GBox4 engine
 - `gbox4.autocomplete`: Enable/disable auto-completion for GBox4 language (coming soon)
 
@@ -86,6 +92,15 @@ This extension contributes the following settings:
 - Some complex expressions may not highlight perfectly
 
 ## Release Notes
+
+### 0.0.6
+- Fixed permission issues when running GBox4 on macOS
+- Improved support for macOS .app bundles, automatically using the internal executable
+- Enhanced execution logging with more detailed information
+
+### 0.0.5
+- Improved syntax highlighting for special identifiers like `id#walk`
+- Now the entire identifier (including the prefix and content) is highlighted with a distinct color
 
 ### 0.0.4
 - Improved syntax highlighting for special identifiers like `id#walk`

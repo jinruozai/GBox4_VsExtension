@@ -4,6 +4,13 @@ All notable changes to the "GBox4" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.6] - 2024-06-25
+
+### Fixed
+- 修复在macOS上运行GBox4 .app应用程序的权限问题
+- 增强了对macOS应用程序包的支持，自动定位并使用内部可执行文件
+- 改进了执行引擎的日志，显示更详细的信息
+
 ## [0.0.5] - 2024-06-25
 
 ### Fixed

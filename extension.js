@@ -2,6 +2,7 @@ const vscode = require('vscode');
 const { exec } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const os = require('os');
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -47,6 +48,49 @@ function runGboxFile() {
 }
 
 /**
+ * 获取macOS应用程序的可执行文件路径
+ * @param {string} appPath macOS应用程序路径 (.app)
+ * @returns {string} 可执行文件路径
+ */
+function getMacOSExecutablePath(appPath) {
+    // 移除路径末尾的斜杠（如果有）
+    appPath = appPath.replace(/\/$/, '');
+    
+    // 检查是否是.app路径
+    if (!appPath.endsWith('.app')) {
+        return appPath;
+    }
+    
+    // 应用名称（不包含.app）
+    const appName = path.basename(appPath, '.app');
+    
+    // macOS应用的可执行文件通常位于Contents/MacOS/目录下
+    const executablePath = path.join(appPath, 'Contents', 'MacOS', appName);
+    
+    // 检查可执行文件是否存在
+    if (fs.existsSync(executablePath)) {
+        return executablePath;
+    }
+    
+    // 如果按常规名称查找不到，尝试查找Contents/MacOS/目录下的任意可执行文件
+    const macOSDir = path.join(appPath, 'Contents', 'MacOS');
+    if (fs.existsSync(macOSDir)) {
+        try {
+            const files = fs.readdirSync(macOSDir);
+            if (files.length > 0) {
+                // 返回第一个找到的文件
+                return path.join(macOSDir, files[0]);
+            }
+        } catch (error) {
+            console.error('Error searching executable in MacOS directory:', error);
+        }
+    }
+    
+    // 如果找不到可执行文件，返回原始路径
+    return appPath;
+}
+
+/**
  * 执行GBox4引擎来运行指定的文件
  * @param {string} filePath 要运行的GBox4文件路径
  */
@@ -80,6 +124,14 @@ function executeGboxEngine(filePath) {
         }
     }
 
+    // 处理macOS的.app应用程序路径
+    const platform = os.platform();
+    if (platform === 'darwin' && enginePath.endsWith('.app')) {
+        const originalPath = enginePath;
+        enginePath = getMacOSExecutablePath(enginePath);
+        console.log(`macOS app detected. Converted path from ${originalPath} to ${enginePath}`);
+    }
+
     // 检查引擎是否存在
     if (!fs.existsSync(enginePath)) {
         vscode.window.showErrorMessage(
@@ -102,7 +154,7 @@ function executeGboxEngine(filePath) {
     terminal.sendText(command);
     terminal.show();
 
-    vscode.window.showInformationMessage(`Running: ${path.basename(filePath)}`);
+    vscode.window.showInformationMessage(`Running: ${path.basename(filePath)} (${filePath}) with engine: ${path.basename(enginePath)}`);
 }
 
 function deactivate() {}
